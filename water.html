@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Watering Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(images/img2.jpg);
+            color: #333; /* Default text color */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .instruction {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f5f5f5; /* Light gray background */
+            margin-bottom: 20px;
+        }
+
+        .instruction h3 {
+            color: #007bff; /* Blue color */
+            margin-top: 0;
+        }
+
+        .instruction p {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #007bff; /* Blue color for highlighted words */
+            font-weight: bold; /* Bold font */
+        }
+
+        .important {
+            color: #ff4500; /* Orange color for important information */
+            font-weight: bold; /* Bold font */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure rounded corners are respected */
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .formulas {
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center; /* Center align */
+        }
+
+        .formulas h2 {
+            color: #007bff; /* Blue color */
+        }
+
+        .formulas ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .formulas ul li {
+            margin-bottom: 10px;
+            color: #555; /* Dark gray color */
+        }
+
+        /* New styles for highlighted formulas */
+
+        .highlight {
+            background-color: #f5f5f5; /* Light gray background */
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .highlight strong {
+            color: #007bff; /* Blue color for strong text */
+            font-weight: bold; /* Bold font */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Watering Instructions</h1>
+        <div class="instruction">
+            <h3>Dear Farmer,</h3>
+            <p>We understand the importance of <span class="highlight">water</span> for your plants. To ensure <span class="highlight">healthy growth</span> and <span class="highlight">maximum yield</span>, it's crucial to provide the right amount of water.</p>
+            <p>Based on the current environmental conditions and the needs of your crops, we recommend the following:</p>
+            <p class="important">Water your plants with <span id="ETcValue" class="highlight">[ETc value]</span> millimeters per day. This will help meet their <span class="highlight">evapotranspiration</span> requirements, ensuring they receive <span class="highlight">optimal moisture</span> for growth.</p>
+            <p>Thank you for your dedication to <span class="highlight">agriculture</span>. If you have any questions or need further assistance, please don't hesitate to reach out.</p>
+            <p><span class="highlight">Happy farming!</span></p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Temperature (°C)</td>
+                <td id="temperature">27.6</td>
+            </tr>
+            <tr>
+                <td>Net Radiation (MJ/m<sup>2</sup>/day)</td>
+                <td id="netRadiation">15</td>
+            </tr>
+            <tr>
+                <td>Soil Heat Flux (MJ/m<sup>2</sup>/day)</td>
+                <td id="soilHeatFlux">0.1</td>
+            </tr>
+            <tr>
+                <td>Wind Speed (m/s)</td>
+                <td id="windSpeed">2.48</td>
+            </tr>
+            <tr>
+                <td>Relative Humidity (%)</td>
+                <td id="relativeHumidity">0</td>
+            </tr>
+            <tr>
+                <td>Atmospheric Pressure (kPa)</td>
+                <td id="atmosphericPressure">100.44</td>
+            </tr>
+            <tr>
+                <td>Water Content (mm)</td>
+                <td id="waterContent">1.103</td>
+            </tr>
+        </table>
+
+        <div class="formulas">
+            <h2>Formulas</h2>
+            <ul>
+                <li><strong>Actual Vapor Pressure (ea):</strong> The pressure exerted by the water vapor actually present in the air, measured in kPa.</li>
+                <li><strong>Saturation Vapor Pressure (es):</strong> The pressure exerted by water vapor when the air is saturated with moisture at a given temperature, measured in kPa.</li>
+                <li><strong>Penman-Monteith Equation:</strong> A method used to estimate evapotranspiration rates, taking into account various environmental factors. The equation is expressed as:</li>
+            <div class="highlight">
+            <p><strong>ETc = (0.408 * Δ * (Rn - G) + γ * (900 / (T + 273)) * u * (es - ea)) / (Δ + γ * (1 + 0.34 * u))</strong></p>
+            </div>
+            <ul>
+                <li><strong>ETc:</strong> Crop evapotranspiration (mm/day).</li>
+                <li><strong>Δ:</strong> Slope of the vapor pressure curve (kPa/°C).</li>
+                <li><strong>Rn:</strong> Net radiation (MJ/m<sup>2</sup>/day).</li>
+                <li><strong>G:</strong> Soil heat flux density (MJ/m<sup>2</sup>/day).</li>
+                <li><strong>γ:</strong> Psychrometric constant (kPa/°C).</li>
+                <li><strong>T:</strong> Air temperature (°C).</li>
+                <li><strong>u:</strong> Wind speed at 2 meters height (m/s).</li>
+                <li><strong>es:</strong> Saturation vapor pressure (kPa).</li>
+                <li><strong>ea:</strong> Actual vapor pressure (kPa).</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function calculateCropEvapotranspiration(temperature, netRadiation, soilHeatFlux, windSpeed, waterContent, atmosphericPressure, relativeHumidity) {
+            var saturationVaporPressure = 0.6108 * Math.exp((17.27 * temperature) / (temperature + 237.3));
+            var actualVaporPressure = saturationVaporPressure * relativeHumidity;
+            actualVaporPressure = actualVaporPressure.toFixed(3);
+            saturationVaporPressure = saturationVaporPressure.toFixed(3);
+        
+            const delta = (4098 * 0.6108 * Math.exp((17.27 * temperature) / (temperature + 237.3))) / Math.pow((temperature + 237.3), 2);
+            const gamma = (0.00163 * atmosphericPressure) / (1005 + 1884 * waterContent); 
+        
+            const ETc = (0.408 * delta * (netRadiation - soilHeatFlux) + gamma * (900 / (temperature + 273)) * windSpeed * (saturationVaporPressure - actualVaporPressure)) /
+                (delta + gamma * (1 + 0.34 * windSpeed));
+            
+            return ETc.toFixed(3);
+        }
+        
+        const temperature = parseFloat(document.getElementById('temperature').textContent);
+        const netRadiation = parseFloat(document.getElementById('netRadiation').textContent);
+        const soilHeatFlux = parseFloat(document.getElementById('soilHeatFlux').textContent);
+        const windSpeed = parseFloat(document.getElementById('windSpeed').textContent);
+        const relativeHumidity = parseFloat(document.getElementById('relativeHumidity').textContent) / 100; // Convert to decimal
+        const atmosphericPressure = parseFloat(document.getElementById('atmosphericPressure').textContent);
+        const waterContent = parseFloat(document.getElementById('waterContent').textContent);
+        
+        const ETc = calculateCropEvapotranspiration(temperature, netRadiation, soilHeatFlux, windSpeed, waterContent, atmosphericPressure, relativeHumidity);
+        document.getElementById('ETcValue').textContent = ETc + " mm/day";
+    </script>
+</body>
+</html>
