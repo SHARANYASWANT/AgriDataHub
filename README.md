@@ -14,7 +14,7 @@ AgriDataHub entails the integration of meteorological data with farm-specific in
 - **User-friendly Interface**: Offers intuitive interfaces and interactive tools for easy access to insights and recommendations.
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/agridatahub.git`
+1. Clone the repository: `https://github.com/SHARANYASWANT/AgriDataHub.git`
 2. Install dependencies:
    -`flask`
    -'pandas'
